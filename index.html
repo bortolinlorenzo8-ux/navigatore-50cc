@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MotorinNav 45 – Navigatore per 50cc</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="logo">
+          <span class="logo-icon">🛵</span>
+          <div class="logo-text">
+            <span class="logo-title">MotorinNav 45</span>
+            <span class="logo-subtitle">Navigador veneto par cinquantino</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="app-main">
+        <section class="card card-input">
+          <h2>Imposta il tuo giro</h2>
+          <div class="field-group">
+            <label for="from">Partenza</label>
+            <input
+              id="from"
+              type="text"
+              placeholder="Es. Casa, Padova centro…"
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="to">Destinazione</label>
+            <input
+              id="to"
+              type="text"
+              placeholder="Es. Lavoro, Mestre stazion…"
+            />
+          </div>
+
+          <div class="field-group inline">
+            <div class="field">
+              <label for="distance">Distanza (km)</label>
+              <input
+                id="distance"
+                type="number"
+                min="0"
+                step="0.1"
+                placeholder="Es. 12.5 (o lasiala vuota)"
+              />
+            </div>
+            <div class="field">
+              <label for="speed">Velocità media (km/h)</label>
+              <input
+                id="speed"
+                type="number"
+                min="5"
+                max="45"
+                step="1"
+                value="45"
+              />
+              <small class="hint">Max legale cinquantino: 45 km/h</small>
+            </div>
+          </div>
+
+          <label class="checkbox-row">
+            <input id="avoid-motorways" type="checkbox" checked />
+            <span>Solo strade da motorin (niente autostrade, se possibile)</span>
+          </label>
+
+          <p class="hint hint-inline">
+            Se lasci vuota la distanza, la calcolo mi dal percorso su mappa.
+          </p>
+
+          <button id="plan-route" class="primary-btn">
+            Calcola percorso per motorin
+          </button>
+        </section>
+
+        <section class="card card-output">
+          <h2>Dettagli del tragitto</h2>
+          <div id="map" class="map-container">
+            <button
+              id="toggle-fullscreen"
+              type="button"
+              class="map-fullscreen-btn"
+            >
+              ⤢
+            </button>
+            <div class="map-placeholder">
+              Carico la mappa… se no la se vedi, controlla la connession.
+            </div>
+          </div>
+
+          <div id="summary" class="summary">
+            Inserisci i dati e premi "Calcola percorso per motorin".
+          </div>
+
+          <div class="eta-grid">
+            <div class="eta-box">
+              <span class="eta-label">Tempo stimato</span>
+              <span id="eta-time" class="eta-value">–</span>
+            </div>
+            <div class="eta-box">
+              <span class="eta-label">Arrivo previsto</span>
+              <span id="eta-arrival" class="eta-value">–</span>
+            </div>
+          </div>
+
+          <div class="directions-header">
+            <h3>Istruzioni in veneto</h3>
+            <button id="speak" class="secondary-btn" disabled>
+              Voce veneta ON
+            </button>
+          </div>
+          <ol id="directions" class="directions-list"></ol>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        Fatto su misura per i 50cc: semplice, pratico e veneto DOC.
+      </footer>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+
